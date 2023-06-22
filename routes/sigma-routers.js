@@ -3,6 +3,7 @@ import {
   getAllMovies,
   PostMovie,
   updateMovie,
+  deleteMovie,
 } from '../controllers/sigma-controller.js'
 import { MakeActor, GetActors } from '../controllers/actor-controllers.js'
 import { authAdminMiddleware } from '../middleware/authMiddleWare.js'
@@ -15,4 +16,5 @@ router.route('/v1/Actors/AddActor').post(authAdminMiddleware, MakeActor)
 router
   .route('/v1/Movies/UpdateMovie/:id')
   .patch(authAdminMiddleware, updateMovie)
+router.route('/v1/Movies/DeleteMovie/:id').delete(deleteMovie)
 export default router

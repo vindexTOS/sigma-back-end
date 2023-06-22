@@ -81,3 +81,14 @@ export const updateMovie = async (req, res) => {
     return res.status(500).json({ msg: 'Server Error 500' })
   }
 }
+
+export const deleteMovie = async (req, res) => {
+  const { id } = req.params
+
+  try {
+    await MoviesModel.findByIdAndDelete({ _id: id })
+    return res.status(200).json({ msg: 'Movie has been deleted' })
+  } catch (error) {
+    return res.status(500).json({ msg: 'Server Error' })
+  }
+}
