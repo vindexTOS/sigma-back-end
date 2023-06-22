@@ -28,15 +28,17 @@ const MoviesSchema = new mongoose.Schema({
     requried: true,
     trim: true,
   },
-  actors: {
-    name: {
-      type: String,
-      trim: true,
+  actors: [
+    {
+      name: {
+        type: String,
+        trim: true,
+      },
+      img: {
+        type: String,
+      },
     },
-    img: {
-      type: String,
-    },
-  },
+  ],
   rating: {
     IMDb: Number,
     RottenTomatos: Number,

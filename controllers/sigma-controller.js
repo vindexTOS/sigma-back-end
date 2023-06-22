@@ -1,5 +1,6 @@
 import MoviesModel from '../moduls/MoviesModel.js'
 import AuthModel from '../moduls/AuthModel.js'
+import ActorsModel from '../moduls/ActorsModel.js'
 export const getAllMovies = async (req, res) => {
   const sortBy = req.query.sortBy
   const genre = req.query.genre
