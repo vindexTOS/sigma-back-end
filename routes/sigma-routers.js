@@ -6,7 +6,7 @@ import {
   deleteMovie,
 } from '../controllers/sigma-controller.js'
 import { MakeActor, GetActors } from '../controllers/actor-controllers.js'
-import { getReviews } from '../controllers/review-controllers.js'
+import { getReviews, CreateReview } from '../controllers/review-controllers.js'
 import { authAdminMiddleware } from '../middleware/authMiddleWare.js'
 const router = express.Router()
 
@@ -19,6 +19,6 @@ router
   .patch(authAdminMiddleware, updateMovie)
 router.route('/v1/Movies/DeleteMovie/:id').delete(deleteMovie)
 //reviews
-router.route('/v1/Movies/Reviews/:forumId').get(getReviews)
+router.route('/v1/Movies/Reviews/:movieId').get(getReviews).post(CreateReview)
 
 export default router
