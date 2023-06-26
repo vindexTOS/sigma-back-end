@@ -41,7 +41,7 @@ export const getAllMovies = async (req, res) => {
       .sort(sortQuery)
       .skip(startIndex)
       .limit(PageSize)
-
+    movies.reverse()
     return res.status(200).json({ data: movies, TotalPages, TotalMovies })
   } catch (error) {
     return res.status(500).json({ msg: 'Internal Error' })

@@ -19,6 +19,6 @@ router
   .patch(authAdminMiddleware, updateMovie)
 router.route('/v1/Movies/DeleteMovie/:id').delete(deleteMovie)
 //reviews
-router.route('/v1/Movies/Reviews/:movieId').get(getReviews).post(CreateReview)
+router.route('/v1/Movies/Reviews/:movieId').get(getReviews).patch(CreateReview)
 
 export default router

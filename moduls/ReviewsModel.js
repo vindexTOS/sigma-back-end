@@ -12,9 +12,11 @@ const ReviewsSchema = new mongoose.Schema({
       },
       rate: {
         type: Number,
-        default: 5,
       },
       userId: {
+        type: String,
+      },
+      userName: {
         type: String,
       },
     },
