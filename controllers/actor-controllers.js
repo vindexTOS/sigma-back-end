@@ -24,3 +24,25 @@ export const GetActors = async (req, res) => {
     return res.status(500).json({ msg: 'Server Error' })
   }
 }
+
+export const DeleteActor = async (req, res) => {
+  let { id } = req.params
+
+  try {
+    await ActorsModel.findByIdAndDelete(id)
+    return res.status(200).json({ msg: 'Actor Deleted' })
+  } catch (error) {
+    return res.status(500).json({ msg: 'Server Error', error: error.message })
+  }
+}
+
+export const UpdateActor = async (req, res) => {
+  const { id } = req.params
+  console.log(id)
+  try {
+    await ActorsModel.findByIdAndUpdate(id, req.body)
+    return res.status(200).json({ msg: 'Actor Updated' })
+  } catch (error) {
+    return res.status(500).json({ msg: 'Server Error', error: error.message })
+  }
+}
