@@ -10,6 +10,7 @@ export const getAllMovies = async (req, res) => {
   const PageSize = parseInt(req.query.PageSize) || 8
   const startIndex = (PageNumber - 1) * PageSize
   const endIndex = PageNumber * PageSize
+
   let sortQuery = {}
 
   if (sortBy) {
@@ -39,9 +40,10 @@ export const getAllMovies = async (req, res) => {
     const TotalPages = Math.ceil(TotalMovies / PageSize)
     let movies = await MoviesModel.find(query)
       .sort(sortQuery)
-      .skip(startIndex)
-      .limit(PageSize)
-    movies.reverse()
+      .lean() // Convert documents to plain JavaScript objects
+      .exec() // Execute the query
+    movies.reverse() // Reverse the array
+    movies = movies.slice(startIndex, endIndex)
     return res.status(200).json({ data: movies, TotalPages, TotalMovies })
   } catch (error) {
     return res.status(500).json({ msg: 'Internal Error' })
