@@ -30,7 +30,6 @@ export const getAllMovies = async (req, res) => {
     query['metadata.genre'] = { $regex: filteredGenres }
     sortQuery = { 'metadata.genre': 1 }
   }
-  console.log(query)
   if (year) {
     query['metadata.year'] = year
   }

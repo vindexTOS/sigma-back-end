@@ -16,8 +16,7 @@ export const getReviews = async (req, res) => {
 export const CreateReview = async (req, res) => {
   const { userId, comment, rate, userName } = req.body
   const { movieId } = req.params
-  console.log(req.body)
-  try {
+   try {
     const updatedMovie = await ReviewsModel.findOneAndUpdate(
       { movieId },
       { $push: { review: { userId, comment, rate, userName } } },

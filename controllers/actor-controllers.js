@@ -2,8 +2,7 @@ import ActorsModel from '../moduls/ActorsModel.js'
 
 export const MakeActor = async (req, res) => {
   const { name, img } = req.body
-  console.log(name, img)
-  if (!name && !img) {
+   if (!name && !img) {
     return res.status(400).json({ msg: 'Provide all the values' })
   }
 
@@ -38,8 +37,7 @@ export const DeleteActor = async (req, res) => {
 
 export const UpdateActor = async (req, res) => {
   const { id } = req.params
-  console.log(id)
-  try {
+   try {
     await ActorsModel.findByIdAndUpdate(id, req.body)
     return res.status(200).json({ msg: 'Actor Updated' })
   } catch (error) {

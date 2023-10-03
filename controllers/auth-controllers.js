@@ -9,8 +9,7 @@ export const Register = async (req, res) => {
   }
 
   const Hasshedpassword = await bcrypt.hash(password, 10)
-  console.log(Hasshedpassword)
-
+ 
   if (password && username) {
     await AuthModel.create({ username, password: Hasshedpassword })
   } else {
@@ -19,8 +18,7 @@ export const Register = async (req, res) => {
 
   const userFromDb = await AuthModel.findOne({ username: username })
   userFromDb.password = null
-  console.log(userFromDb)
-
+ 
   const token = jwt.sign({ user: userFromDb }, process.env.JWT_STRING, {
     expiresIn: '1h',
   })
@@ -57,7 +55,6 @@ export const Login = async (req, res) => {
     res.set('Authorization', `Bearer ${token}`)
     return res.status(200).json({ token, user })
   } catch (error) {
-    console.log(error)
-    return res.status(500).json({ msg: 'Internal server error' })
+     return res.status(500).json({ msg: 'Internal server error' })
   }
 }
